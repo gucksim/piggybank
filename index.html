@@ -13,132 +13,148 @@
 <title>Цифровая копилка</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=SB+Sans+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
---primary:#006C4C;--on-primary:#fff;--pc:#8CF8C9;--on-pc:#002114;--sc:#CEE9DA;--on-sc:#092016;
---surface:#F5FBF6;--s-low:#EFF5F0;--s-mid:#E9EFEA;--s-high:#E3EAE4;
---on-surface:#171D1A;--on-var:#404943;--outline:#707973;--outline-var:#BFC9C2;--error:#BA1A1A;
---e1:0 1px 2px rgba(0,0,0,.3),0 1px 3px 1px rgba(0,0,0,.15);--e2:0 1px 2px rgba(0,0,0,.3),0 2px 6px 2px rgba(0,0,0,.15);
+--primary:#21A038;--on-primary:#fff;--pc:#D6F2DC;--on-pc:#003311;--sc:#EAF7ED;--on-sc:#0A3D18;
+--surface:#F7F7F7;--s-low:#FFFFFF;--s-mid:#F0F0F0;--s-high:#E8E8E8;
+--on-surface:#1A1A1A;--on-var:#6B6B6B;--outline:#D4D4D4;--outline-var:#E5E5E5;--error:#E53935;
+--e1:0 2px 8px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.06);--e2:0 4px 24px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.08);
+--e3:0 8px 32px rgba(33,160,56,.18);
 --bg:var(--surface);--card:var(--s-low);--line:var(--outline-var);--text:var(--on-surface);--mute:var(--on-var);
---acc:var(--primary);--acc2:var(--primary);--accsoft:var(--pc);--danger:var(--error);color-scheme:light}
+--acc:var(--primary);--acc2:var(--primary);--accsoft:var(--pc);--danger:var(--error);
+--radius-card:20px;--radius-btn:12px;color-scheme:light}
 :root[data-theme="dark"]{
---primary:#6FDBAD;--on-primary:#003826;--pc:#005138;--on-pc:#8CF8C9;--sc:#354C41;--on-sc:#D1E8DA;
---surface:#0F1512;--s-low:#171D1A;--s-mid:#1B211E;--s-high:#252B28;
---on-surface:#DEE4DE;--on-var:#BFC9C2;--outline:#89938C;--outline-var:#404943;--error:#FFB4AB;color-scheme:dark}
+--primary:#2ECC58;--on-primary:#001A09;--pc:#003D14;--on-pc:#A8F5BC;--sc:#1A3D22;--on-sc:#C8F5D4;
+--surface:#111111;--s-low:#1C1C1C;--s-mid:#242424;--s-high:#2E2E2E;
+--on-surface:#F0F0F0;--on-var:#A0A0A0;--outline:#3A3A3A;--outline-var:#2E2E2E;--error:#FF6B6B;color-scheme:dark}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{margin:0;overflow-x:hidden;-webkit-tap-highlight-color:transparent;background:var(--surface);color:var(--on-surface);font-family:'Roboto',system-ui,sans-serif;font-size:14px;line-height:1.43;letter-spacing:.01em;transition:background .3s,color .3s;min-height:100vh;min-height:100dvh}
-.wrap{max-width:1080px;margin:0 auto;padding:12px max(16px,env(safe-area-inset-right)) 48px max(16px,env(safe-area-inset-left))}
+body{margin:0;overflow-x:hidden;-webkit-tap-highlight-color:transparent;background:var(--surface);color:var(--on-surface);font-family:'Inter','SB Sans Display',system-ui,sans-serif;font-size:14px;line-height:1.5;letter-spacing:-.01em;transition:background .3s,color .3s;min-height:100vh;min-height:100dvh}
+.wrap{max-width:1100px;margin:0 auto;padding:16px max(20px,env(safe-area-inset-right)) 56px max(20px,env(safe-area-inset-left))}
 button{font-family:inherit;cursor:pointer;touch-action:manipulation}
 :focus-visible{outline:2px solid var(--primary);outline-offset:2px}
-header{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:64px;margin-bottom:8px}
-.logo{font-weight:400;font-size:22px;line-height:28px;display:flex;gap:10px;align-items:center}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:72px;margin-bottom:4px;padding:4px 0}
+.logo{font-weight:700;font-size:20px;line-height:28px;display:flex;gap:10px;align-items:center;letter-spacing:-.03em;color:var(--primary)}
+.logo span{color:var(--on-surface)}
 /* кнопки */
-.btn{height:40px;padding:0 20px;border:1px solid var(--outline);background:transparent;color:var(--primary);border-radius:999px;font-weight:500;font-size:14px;letter-spacing:.1px;transition:background .2s,box-shadow .2s,filter .2s}
-@media(hover:hover){.btn:hover{background:color-mix(in srgb,var(--primary) 8%,transparent)}}
-.btn:active{background:color-mix(in srgb,var(--primary) 12%,transparent)}
-.btn.pri{background:var(--primary);border-color:var(--primary);color:var(--on-primary)}
-@media(hover:hover){.btn.pri:hover{filter:brightness(1.1);box-shadow:var(--e1)}}
-.btn.danger{color:var(--error)}
+.btn{height:44px;padding:0 20px;border:1.5px solid var(--outline);background:var(--s-low);color:var(--primary);border-radius:var(--radius-btn);font-weight:600;font-size:14px;letter-spacing:-.01em;transition:background .18s,box-shadow .18s,filter .18s,border-color .18s}
+@media(hover:hover){.btn:hover{background:var(--sc);border-color:var(--primary)}}
+.btn:active{background:var(--sc);transform:scale(.98)}
+.btn.pri{background:var(--primary);border-color:var(--primary);color:var(--on-primary);box-shadow:var(--e3)}
+@media(hover:hover){.btn.pri:hover{filter:brightness(1.08);box-shadow:var(--e2)}}
+.btn.pri:active{transform:scale(.97)}
+.btn.danger{color:var(--error);border-color:color-mix(in srgb,var(--error) 30%,transparent)}
 .btn:disabled{opacity:.38;cursor:default}
-.quick .btn{background:var(--sc);border-color:transparent;color:var(--on-sc)}
-@media(hover:hover){.quick .btn:hover{filter:brightness(.96);box-shadow:var(--e1)}}
-@media(hover:hover){:root[data-theme="dark"] .quick .btn:hover{filter:brightness(1.12)}}
-.ib{width:40px;height:40px;border:0;border-radius:50%;background:transparent;color:var(--on-var);font-size:16px;display:grid;place-items:center;flex:none;transition:background .2s}
-@media(hover:hover){.ib:hover{background:color-mix(in srgb,var(--on-surface) 8%,transparent)}}
+.quick .btn{background:var(--sc);border-color:transparent;color:var(--primary);font-weight:600}
+@media(hover:hover){.quick .btn:hover{background:color-mix(in srgb,var(--primary) 15%,transparent)}}
+.ib{width:40px;height:40px;border:0;border-radius:10px;background:transparent;color:var(--on-var);font-size:16px;display:grid;place-items:center;flex:none;transition:background .18s}
+@media(hover:hover){.ib:hover{background:var(--s-high)}}
 /* сегментированные кнопки */
-.tabs{position:relative;display:flex;border:1px solid var(--outline);border-radius:999px;overflow:hidden}
+.tabs{position:relative;display:flex;border:0;background:var(--s-high);border-radius:14px;overflow:hidden;padding:4px}
 .ti{display:none}
-.tab-ind{position:absolute;top:0;bottom:0;left:0;width:0;background:var(--sc);border-radius:999px;pointer-events:none;transition:transform .5s cubic-bezier(.2,0,0,1),width .5s cubic-bezier(.2,0,0,1)}
+.hr{display:flex;gap:8px;align-items:center}
+.afull{width:100%;margin-top:10px}
+.btn.tonal{background:var(--sc);border-color:transparent;color:var(--primary);font-weight:600}
+.aerr{color:var(--error);font-size:13px;margin-top:10px;line-height:1.4}
+.alink{border:0;background:none;color:var(--primary);font-weight:600;padding:8px 0;font-size:13px}
+.acode{background:var(--s-mid);border-radius:12px;padding:12px;font-size:12px;overflow:auto;line-height:1.5;white-space:pre-wrap;margin:10px 0 0}
+.astat{color:var(--on-var);font-size:13px;line-height:1.5;margin:6px 0 0}
+.tab-ind{position:absolute;top:4px;bottom:4px;left:4px;width:0;background:var(--s-low);border-radius:10px;pointer-events:none;transition:transform .4s cubic-bezier(.2,0,0,1),width .4s cubic-bezier(.2,0,0,1);box-shadow:var(--e1)}
 .tab-ind.instant{transition:none}
-.tab{position:relative;z-index:1;height:40px;padding:0 20px;border:0;background:transparent;color:var(--on-surface);font-weight:500;font-size:14px;transition:color .3s}
-@media(hover:hover){.tab:hover{background:color-mix(in srgb,var(--on-surface) 8%,transparent)}}
-.tab.on,.tab.on:hover{background:transparent;color:var(--on-sc)}
+.tab{position:relative;z-index:1;height:36px;padding:0 18px;border:0;background:transparent;color:var(--on-var);font-weight:500;font-size:14px;border-radius:10px;transition:color .25s}
+@media(hover:hover){.tab:hover{color:var(--on-surface)}}
+.tab.on,.tab.on:hover{background:transparent;color:var(--primary);font-weight:600}
 [hidden]{display:none!important}
 /* главный блок */
-.hero{background:var(--pc);color:var(--on-pc);border-radius:28px;padding:28px 28px 28px 32px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
-.hero small{font-size:14px;font-weight:500;opacity:.8}
-.total{font-size:clamp(44px,9vw,64px);font-weight:400;letter-spacing:-.01em;line-height:1.1;margin-top:6px;font-variant-numeric:tabular-nums}
-.sub{opacity:.75;font-size:14px;margin-top:6px}
-.hero .btn.pri{height:56px;padding:0 24px;border-radius:16px;box-shadow:var(--e1);font-size:15px}
-h2{font-size:22px;font-weight:400;line-height:28px;margin:32px 4px 12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,310px),1fr));gap:12px}
-.card{background:var(--s-low);border-radius:24px;padding:20px;transition:background .3s,box-shadow .3s;position:relative}
-.card.done{background:var(--s-mid);box-shadow:inset 0 0 0 2px var(--primary)}
-.ch{display:flex;align-items:center;gap:12px}
-.ico{width:48px;height:48px;border-radius:16px;background:var(--pc);display:grid;place-items:center;font-size:24px;flex:none}
-.ch h3{margin:0;font-size:16px;font-weight:500;flex:1;word-break:break-word;line-height:24px}
-.amt{margin:16px 0 10px;font-size:24px;font-weight:500;line-height:32px;font-variant-numeric:tabular-nums}
-.amt span{color:var(--on-var);font-weight:400;font-size:14px}
-.bar{height:8px;background:var(--s-high);border-radius:4px;overflow:hidden}
-.fill{height:100%;width:0;border-radius:4px;background:var(--primary);transition:width .9s cubic-bezier(.2,0,0,1)}
-.done .fill{background:linear-gradient(90deg,var(--primary),#E9B93F);background-size:200% 100%;animation:shine 2.5s linear infinite}
+.hero{background:linear-gradient(135deg,#21A038 0%,#1a8030 60%,#136025 100%);color:#fff;border-radius:var(--radius-card);padding:32px 32px 32px 36px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:220px;height:220px;background:rgba(255,255,255,.07);border-radius:50%;pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-60px;right:60px;width:160px;height:160px;background:rgba(255,255,255,.05);border-radius:50%;pointer-events:none}
+.hero small{font-size:13px;font-weight:500;opacity:.85;letter-spacing:.02em;text-transform:uppercase}
+.total{font-size:clamp(40px,8vw,60px);font-weight:700;letter-spacing:-.03em;line-height:1.08;margin-top:8px;font-variant-numeric:tabular-nums}
+.sub{opacity:.8;font-size:14px;margin-top:8px;font-weight:400}
+.hero .btn.pri{height:52px;padding:0 28px;border-radius:14px;background:#fff;color:var(--primary);border:none;box-shadow:0 4px 16px rgba(0,0,0,.18);font-size:15px;font-weight:700}
+.hero .btn.pri:hover{background:#f0fff4;box-shadow:0 6px 20px rgba(0,0,0,.22)}
+h2{font-size:20px;font-weight:700;line-height:28px;margin:36px 2px 14px;display:flex;justify-content:space-between;align-items:center;gap:12px;letter-spacing:-.02em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:16px}
+.card{background:var(--s-low);border-radius:var(--radius-card);padding:22px;transition:background .25s,box-shadow .25s;position:relative;box-shadow:var(--e1)}
+.card:hover{box-shadow:var(--e2)}
+.card.done{background:var(--s-low);box-shadow:0 0 0 2px var(--primary),var(--e1)}
+.ch{display:flex;align-items:center;gap:14px}
+.ico{width:48px;height:48px;border-radius:14px;background:var(--sc);display:grid;place-items:center;font-size:24px;flex:none}
+.ch h3{margin:0;font-size:16px;font-weight:600;flex:1;word-break:break-word;line-height:24px;letter-spacing:-.01em}
+.amt{margin:18px 0 12px;font-size:26px;font-weight:700;line-height:32px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.amt span{color:var(--on-var);font-weight:400;font-size:15px}
+.bar{height:6px;background:var(--s-high);border-radius:3px;overflow:hidden}
+.fill{height:100%;width:0;border-radius:3px;background:var(--primary);transition:width .9s cubic-bezier(.2,0,0,1)}
+.done .fill{background:linear-gradient(90deg,var(--primary),#F5A623);background-size:200% 100%;animation:shine 2.5s linear infinite}
 @keyframes shine{to{background-position:-200% 0}}
 .pct{display:flex;justify-content:space-between;color:var(--on-var);font-size:12px;font-weight:500;margin-top:8px}
-.quick{display:flex;gap:8px;margin-top:14px}
-.quick .btn{flex:1;padding:0}
+.quick{display:flex;gap:8px;margin-top:16px}
+.quick .btn{flex:1;padding:0;height:40px;font-size:13px}
 .custom{display:grid;grid-template-columns:1fr 1.4fr;gap:8px;margin-top:12px}
-input,select{font-family:inherit;font-size:14px;height:48px;padding:0 14px;border:1px solid var(--outline);border-radius:8px;background:transparent;color:var(--on-surface);width:100%;min-width:0;transition:border-color .2s}
-input:hover,select:hover{border-color:var(--on-surface)}
-input:focus,select:focus{border-color:var(--primary);outline:1px solid var(--primary);outline-offset:0}
-input[type=file]{height:auto;padding:10px 12px}
+input,select{font-family:inherit;font-size:14px;height:48px;padding:0 16px;border:1.5px solid var(--outline);border-radius:12px;background:var(--s-mid);color:var(--on-surface);width:100%;min-width:0;transition:border-color .2s,background .2s}
+input:hover,select:hover{border-color:#aaa;background:var(--s-low)}
+input:focus,select:focus{border-color:var(--primary);background:var(--s-low);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 15%,transparent)}
+input[type=file]{height:auto;padding:10px 14px}
 select option{background:var(--s-high);color:var(--on-surface)}
-.act{display:flex;gap:8px;margin-top:8px}
+.act{display:flex;gap:8px;margin-top:10px}
 .act .btn{flex:1}
-.cover{width:calc(100% + 40px);margin:-20px -20px 16px;height:132px;object-fit:cover;border-radius:24px 24px 0 0;display:block}
-.lnk{display:inline-block;margin-top:12px;font-size:14px;color:var(--primary);font-weight:500;text-decoration:none;word-break:break-all}
-.lnk:hover{text-decoration:underline}
+.cover{width:calc(100% + 44px);margin:-22px -22px 18px;height:140px;object-fit:cover;border-radius:var(--radius-card) var(--radius-card) 0 0;display:block}
+.lnk{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:13px;color:var(--primary);font-weight:600;text-decoration:none;word-break:break-all;border:1.5px solid var(--sc);border-radius:8px;padding:4px 10px}
+.lnk:hover{background:var(--sc)}
 /* списки */
-.hist{background:var(--s-low);border-radius:24px;overflow:hidden}
-.row{display:grid;grid-template-columns:96px 1fr auto auto;gap:12px;align-items:center;padding:12px 20px;border-bottom:1px solid var(--outline-var);font-size:14px}
+.hist{background:var(--s-low);border-radius:var(--radius-card);overflow:hidden;box-shadow:var(--e1)}
+.row{display:grid;grid-template-columns:96px 1fr auto auto;gap:12px;align-items:center;padding:14px 20px;border-bottom:1px solid var(--outline-var);font-size:14px;transition:background .15s}
+@media(hover:hover){.row:hover{background:var(--s-mid)}}
 .row:last-child{border:0}
 .row .d{color:var(--on-var);font-size:12px}
 .row .c{color:var(--on-var);font-size:12px}
-.row .btn{height:32px;padding:0 12px;border:0}
-.pos{color:var(--primary);font-weight:500}.neg{color:var(--error);font-weight:500}
-.empty{padding:32px;text-align:center;color:var(--on-var)}
-footer{margin-top:40px;display:flex;gap:8px 12px;flex-wrap:wrap;justify-content:center;color:var(--on-var);font-size:12px;align-items:center}
+.row .btn{height:32px;padding:0 12px;border:1.5px solid var(--outline);border-radius:8px;font-size:13px}
+.pos{color:var(--primary);font-weight:600}.neg{color:var(--error);font-weight:600}
+.empty{padding:40px;text-align:center;color:var(--on-var)}
+footer{margin-top:48px;display:flex;gap:8px 12px;flex-wrap:wrap;justify-content:center;color:var(--on-var);font-size:12px;align-items:center;padding-bottom:8px}
 /* диалоги */
-dialog{border:0;border-radius:28px;background:var(--s-high);color:var(--on-surface);padding:24px;width:min(440px,92vw);max-height:92vh;box-shadow:var(--e2)}
-dialog::backdrop{background:rgba(0,0,0,.32)}
-dialog h3{margin:0 0 16px;font-size:24px;font-weight:400;line-height:32px}
-label{display:block;font-size:12px;color:var(--on-var);font-weight:500;margin:14px 0 6px;letter-spacing:.4px}
+dialog{border:0;border-radius:24px;background:var(--s-low);color:var(--on-surface);padding:28px;width:min(460px,92vw);max-height:92vh;box-shadow:var(--e2)}
+dialog::backdrop{background:rgba(0,0,0,.4);backdrop-filter:blur(4px)}
+dialog h3{margin:0 0 20px;font-size:22px;font-weight:700;line-height:30px;letter-spacing:-.02em}
+label{display:block;font-size:12px;color:var(--on-var);font-weight:600;margin:16px 0 6px;letter-spacing:.05em;text-transform:uppercase}
 .emojis{display:flex;flex-wrap:wrap;gap:8px}
-.emojis button{width:44px;height:40px;font-size:20px;border:1px solid var(--outline);border-radius:8px;background:transparent;transition:background .2s}
-@media(hover:hover){.emojis button:hover{background:color-mix(in srgb,var(--on-surface) 8%,transparent)}}
-.emojis button.sel{background:var(--sc);border-color:transparent}
-.dact{display:flex;gap:8px;justify-content:flex-end;margin-top:24px}
-.dact .btn{border:0}.dact .btn.pri{border:0}
-.chk{display:flex;gap:12px;align-items:center;margin-top:14px;font-size:14px;color:var(--on-surface);font-weight:400;letter-spacing:.01em}
+.emojis button{width:44px;height:44px;font-size:20px;border:1.5px solid var(--outline);border-radius:10px;background:var(--s-mid);transition:background .18s,border-color .18s}
+@media(hover:hover){.emojis button:hover{background:var(--sc);border-color:var(--primary)}}
+.emojis button.sel{background:var(--sc);border-color:var(--primary);box-shadow:0 0 0 2px color-mix(in srgb,var(--primary) 25%,transparent)}
+.dact{display:flex;gap:10px;justify-content:flex-end;margin-top:28px}
+.dact .btn{border:1.5px solid var(--outline)}.dact .btn.pri{border:0}
+.chk{display:flex;gap:12px;align-items:center;margin-top:14px;font-size:14px;color:var(--on-surface);font-weight:400;letter-spacing:-.01em}
 .chk input{width:18px;height:18px;accent-color:var(--primary)}
 #dprev{margin-top:8px;display:flex;gap:10px;align-items:center}
 #dprev img{width:84px;height:56px;object-fit:cover;border-radius:12px}
 /* снекбар */
-#toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,80px);background:var(--on-surface);color:var(--surface);padding:14px 20px;border-radius:12px;font-size:14px;box-shadow:var(--e2);transition:.3s;z-index:50;opacity:0;max-width:92vw}
+#toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,80px);background:var(--on-surface);color:var(--surface);padding:14px 22px;border-radius:14px;font-size:14px;font-weight:500;box-shadow:var(--e2);transition:.3s cubic-bezier(.2,0,0,1);z-index:50;opacity:0;max-width:92vw}
 #toast.show{transform:translate(-50%,0);opacity:1}
 canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:60}
 /* диаграмма */
-.chartbox{position:relative;background:var(--s-low);border-radius:24px;padding:16px 12px 8px}
+.chartbox{position:relative;background:var(--s-low);border-radius:var(--radius-card);padding:20px 16px 10px;box-shadow:var(--e1)}
 .chartbox svg{display:block;width:100%;height:auto;overflow:visible}
 .chartbox text{fill:var(--on-var);font-size:11px;font-family:inherit}
-#tip{position:absolute;pointer-events:none;background:var(--on-surface);color:var(--surface);padding:8px 12px;border-radius:8px;font-size:12px;line-height:1.4;display:none;white-space:nowrap;z-index:5}
-h2 select{width:auto;max-width:55%;height:40px;font-size:14px;font-weight:500;border-radius:999px;padding:0 16px}
+#tip{position:absolute;pointer-events:none;background:var(--on-surface);color:var(--surface);padding:10px 14px;border-radius:10px;font-size:12px;line-height:1.5;display:none;white-space:nowrap;z-index:5;box-shadow:var(--e2)}
+h2 select{width:auto;max-width:55%;height:40px;font-size:14px;font-weight:600;border-radius:12px;padding:0 16px;border:1.5px solid var(--outline)}
 /* привычки */
-.alert{display:flex;gap:8px;align-items:flex-start;background:var(--pc);color:var(--on-pc);border-radius:16px;padding:12px 8px 12px 16px;margin-bottom:8px;font-size:14px;line-height:1.5}
-.alert div{flex:1;padding-top:6px}.alert b{display:block;font-weight:500}
-.alert .ib{color:var(--on-pc)}
-.streak{font-size:44px;font-weight:400;letter-spacing:-.01em;margin:16px 0 2px;line-height:1.1}
+.alert{display:flex;gap:10px;align-items:flex-start;background:var(--sc);color:var(--on-surface);border-radius:16px;padding:14px 10px 14px 18px;margin-bottom:10px;font-size:14px;line-height:1.5;border-left:4px solid var(--primary)}
+.alert div{flex:1;padding-top:4px}.alert b{display:block;font-weight:600;color:var(--primary)}
+.alert .ib{color:var(--on-var)}
+.streak{font-size:48px;font-weight:700;letter-spacing:-.03em;margin:16px 0 2px;line-height:1.1;color:var(--primary)}
 .streak span{font-size:16px;font-weight:400;color:var(--on-var);letter-spacing:0}
 .meta{color:var(--on-var);font-size:12px;line-height:1.6}
-.chip{display:inline-flex;align-items:center;height:32px;background:var(--sc);color:var(--on-sc);border-radius:8px;padding:0 12px;font-size:13px;font-weight:500;margin-top:10px}
-.setbox{background:var(--s-low);border-radius:24px;padding:16px 20px;display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-top:12px}
-.setbox p{margin:0;font-size:13px;color:var(--on-var);line-height:1.5;flex:1;min-width:220px}
+.chip{display:inline-flex;align-items:center;height:32px;background:var(--sc);color:var(--primary);border-radius:8px;padding:0 12px;font-size:13px;font-weight:600;margin-top:10px}
+.setbox{background:var(--s-low);border-radius:var(--radius-card);padding:18px 22px;display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-top:14px;box-shadow:var(--e1)}
+.setbox p{margin:0;font-size:13px;color:var(--on-var);line-height:1.6;flex:1;min-width:220px}
 /* итоги недели */
-.wk{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
-.tile{background:var(--s-high);border-radius:16px;padding:14px 16px}
-.tile small{color:var(--on-var);font-size:12px;font-weight:500;display:block;margin-bottom:4px}
-.tile b{font-size:22px;font-weight:500;font-variant-numeric:tabular-nums}
+.wk{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.tile{background:var(--s-high);border-radius:16px;padding:16px 18px;transition:box-shadow .2s}
+.tile:hover{box-shadow:var(--e1)}
+.tile small{color:var(--on-var);font-size:11px;font-weight:600;display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em}
+.tile b{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:var(--primary)}
 .delta{font-size:12px;color:var(--on-var);margin-top:2px}
 .days{display:flex;gap:8px;align-items:flex-end;margin-top:20px}
 .day{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px}
@@ -149,14 +165,14 @@ h2 select{width:auto;max-width:55%;height:40px;font-size:14px;font-weight:500;bo
 .wnote{margin-top:16px;font-size:14px;color:var(--on-var);line-height:1.6}
 .wnote b{color:var(--on-surface);font-weight:500}
 .ach{display:flex;gap:16px;align-items:center}
-.ach .ico{width:56px;height:56px;border-radius:50%;font-size:28px}
+.ach .ico{width:56px;height:56px;border-radius:16px;font-size:28px}
 .ach .info{flex:1;min-width:0}
-.ach b{display:block;font-weight:500;font-size:16px;line-height:24px}
+.ach b{display:block;font-weight:700;font-size:16px;line-height:24px;letter-spacing:-.01em}
 .ach p{margin:2px 0 10px;font-size:13px;color:var(--on-var);line-height:1.4}
-.ach.lock .ico{filter:grayscale(1);opacity:.45;background:var(--s-high)}
-.ach.got{background:var(--pc);color:var(--on-pc)}
-.ach.got .ico{background:var(--surface)}
-.ach.got p{color:var(--on-pc);opacity:.85;margin-bottom:0}
+.ach.lock .ico{filter:grayscale(1);opacity:.4;background:var(--s-high)}
+.ach.got{background:linear-gradient(135deg,var(--sc) 0%,var(--pc) 100%);border:1.5px solid var(--primary)}
+.ach.got .ico{background:var(--s-low)}
+.ach.got p{color:var(--primary);opacity:.9;margin-bottom:0}
 .ach .pct{margin-top:6px}
 @keyframes pop{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
 .ach.fresh .ico{animation:pop .6s ease-out}
@@ -179,7 +195,7 @@ h2 select{width:auto;max-width:55%;height:40px;font-size:14px;font-weight:500;bo
  body{padding-bottom:calc(88px + env(safe-area-inset-bottom))}
  header{min-height:56px}
  .logo{font-size:20px}
- #theme{width:40px;padding:0;font-size:18px}.tlabel{display:none}
+ #theme,#acc{width:40px;padding:0;font-size:18px}#lang{width:44px;padding:0}.tlabel{display:none}
  /* нижняя навигация M3 */
  .tabs{position:fixed;left:0;right:0;bottom:0;z-index:40;border:0;border-top:1px solid var(--outline-var);border-radius:0;background:var(--s-mid);padding:0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);overflow:visible}
  .tab{flex:1;height:80px;padding:12px 2px 0;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;color:var(--on-var)}
@@ -211,7 +227,7 @@ h2 select{width:auto;max-width:55%;height:40px;font-size:14px;font-weight:500;bo
 <header>
   <div class="logo">🐷 Цифровая копилка</div>
   <nav class="tabs"><span class="tab-ind" id="tind" aria-hidden="true"></span><button class="tab on" data-t="goals"><span class="ti" aria-hidden="true">🐷</span><span class="tl">Копилки</span></button><button class="tab" data-t="exp"><span class="ti" aria-hidden="true">💸</span><span class="tl">Траты</span></button><button class="tab" data-t="habits"><span class="ti" aria-hidden="true">🌱</span><span class="tl">Привычки</span></button><button class="tab" data-t="ach"><span class="ti" aria-hidden="true">🏆</span><span class="tl">Достижения</span></button></nav>
-  <button class="btn" id="theme" aria-label="Переключить тему">🌙 Тёмная тема</button>
+  <div class="hr"><button class="btn" id="lang" aria-label="Language">EN</button><button class="btn" id="acc" aria-label="Аккаунт">👤 Войти</button><button class="btn" id="theme" aria-label="Переключить тему">🌙 Тёмная тема</button></div>
 </header>
 <div id="alerts" aria-live="polite"></div>
 
@@ -346,6 +362,36 @@ h2 select{width:auto;max-width:55%;height:40px;font-size:14px;font-weight:500;bo
   <input id="bn" type="number" min="0" step="1" placeholder="1500">
   <div class="dact"><button class="btn danger" id="bclear">Убрать</button><button class="btn" id="bcancel">Отмена</button><button class="btn pri" id="bsave">Сохранить</button></div>
 </dialog>
+<dialog id="adlg">
+  <h3>Аккаунт</h3>
+  <div id="a-cfg" hidden>
+    <p class="astat">Облако не настроено. Вставьте конфигурацию Firebase в начало файла index.html (переменная window.FIREBASE_CONFIG), включите Authentication и Firestore и опубликуйте правила:</p>
+    <pre class="acode">match /users/{uid} {
+  allow read, write: if request.auth != null
+                     && request.auth.uid == uid;
+}</pre>
+    <p class="astat" id="acfgerr"></p>
+  </div>
+  <div id="a-out" hidden>
+    <p class="astat" style="margin-top:0">Войдите, чтобы сохранять данные в облаке и пользоваться ими на всех устройствах.</p>
+    <label for="aem">Почта</label>
+    <input id="aem" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com">
+    <label for="apw">Пароль</label>
+    <input id="apw" type="password" autocomplete="current-password" placeholder="Не меньше 6 символов">
+    <div class="aerr" id="aerr" role="alert"></div>
+    <button class="btn pri afull" id="alogin">Войти</button>
+    <button class="btn afull" id="areg">Создать аккаунт</button>
+    <button class="btn tonal afull" id="agoogle">Войти через Google</button>
+    <button class="alink" id="areset">Забыли пароль?</button>
+  </div>
+  <div id="a-in" hidden>
+    <b id="aname" style="font-weight:500;font-size:16px"></b>
+    <p class="astat" id="astat"></p>
+    <button class="btn tonal afull" id="async">Синхронизировать сейчас</button>
+    <button class="btn danger afull" id="aout">Выйти</button>
+  </div>
+  <div class="dact"><button class="btn" id="aclose">Закрыть</button></div>
+</dialog>
 <dialog id="cdlg">
   <h3 id="ctitle">Подтверждение</h3>
   <p id="ctext" style="color:var(--mute);margin:0;line-height:1.5"></p>
@@ -354,9 +400,338 @@ h2 select{width:auto;max-width:55%;height:40px;font-size:14px;font-weight:500;bo
 <div id="toast"></div>
 
 <script>
+/* ===== FIREBASE: вставьте конфигурацию веб-приложения (Project settings → Your apps → SDK setup and configuration) ===== */
+window.FIREBASE_CONFIG={
+  apiKey:"AIzaSyANFNj7LSHJ2iAGmHlEP7jDelkCcHm25Lw",
+  authDomain:"piggybank-f9e29.firebaseapp.com",
+  projectId:"piggybank-f9e29",
+  storageBucket:"piggybank-f9e29.firebasestorage.app",
+  messagingSenderId:"210619348845",
+  appId:"1:210619348845:web:b767876e43eb8789894c64",
+  measurementId:"G-5YNX4NX284"
+};
+</script>
+<script>
+/* ===== Язык / Language ===== */
+const LANG=(function(){try{const s=localStorage.getItem('pb.lang');if(s==='ru'||s==='en')return s}catch(e){}return(navigator.language||'ru').toLowerCase().indexOf('ru')===0?'ru':'en'})();
+const LOC=LANG==='en'?'en-GB':'ru-RU';
+let tr=s=>s;
+document.documentElement.lang=LANG;
+(function(){
+  const lb=document.getElementById('lang');lb.textContent=LANG==='en'?'RU':'EN';
+  lb.onclick=()=>{try{localStorage.setItem('pb.lang',LANG==='en'?'ru':'en')}catch(e){}location.reload()};
+  if(LANG!=='en')return;
+  const DICT=`Цифровая копилка|Digital Piggy Bank
+Переключить тему|Switch theme
+ Тёмная тема| Dark theme
+ Светлая тема| Light theme
+Аккаунт|Account
+Копилки|Savings
+Траты по дням|Spending by day
+Траты|Spending
+Привычки|Habits
+Достижения|Achievements
+Войти через Google|Sign in with Google
+Войти|Sign in
+Войдите, чтобы сохранять данные в облаке и пользоваться ими на всех устройствах.|Sign in to keep your data in the cloud and use it on all your devices.
+Всего накоплено|Total saved
+Новая цель|New goal
+Мои цели|My goals
+Итоги недели|Weekly summary
+Динамика накоплений|Savings over time
+Цель для диаграммы|Goal for chart
+История операций|Transaction history
+Показать все|Show all
+Свернуть|Collapse
+Потрачено за месяц|Spent this month
+Новая трата|New expense
+Задать бюджет|Set budget
+Изменить бюджет|Change budget
+Предыдущий месяц|Previous month
+Следующий месяц|Next month
+Операции|Transactions
+Сэкономлено на отказе от привычек|Saved by quitting habits
+Новая привычка|New habit
+Включить уведомления|Enable notifications
+Проверить|Test
+Мои привычки|My habits
+Получено достижений|Achievements earned
+Экспорт в JSON|Export to JSON
+Импорт из JSON|Import from JSON
+Данные хранятся только в этом браузере.|Data is stored only in this browser.
+Редактировать цель|Edit goal
+Редактировать привычку|Edit habit
+Редактировать|Edit
+Название|Name
+Например, Отпуск|e.g. Vacation
+Целевая сумма, €|Target amount, €
+Ссылка (необязательно)|Link (optional)
+https://example.com/товар|https://example.com/item
+Картинка (необязательно)|Image (optional)
+Иконка|Icon
+Отмена|Cancel
+Сохранить|Save
+От чего отказываетесь|What are you quitting
+Например, курение|e.g. smoking
+Сколько это стоило в день, € (необязательно)|Daily cost, € (optional)
+Не употребляю с|Quit since
+Время ежедневного напоминания|Daily reminder time
+ Напоминать каждый день| Remind me every day
+Сумма, €|Amount, €
+Сумма не может быть отрицательной|Amount cannot be negative
+Сумма|Amount
+Категория|Category
+Дата начала не может быть в будущем|Start date cannot be in the future
+Дата не может быть в будущем|Date cannot be in the future
+Дата|Date
+Комментарий (необязательно)|Comment (optional)
+Комментарий|Comment
+Например, обед с коллегами|e.g. lunch with colleagues
+Бюджет на месяц|Monthly budget
+Лимит трат, €|Spending limit, €
+Убрать картинку|Remove image
+Убрать|Remove
+Почта|Email
+Пароль|Password
+Не меньше 6 символов|At least 6 characters
+Создать аккаунт|Create account
+Забыли пароль?|Forgot password?
+Синхронизировать сейчас|Sync now
+Выйти из аккаунта|Sign out
+Выйти|Sign out
+Закрыть|Close
+Подтверждение|Confirmation
+Подтвердить|Confirm
+ · общая цель | · total target 
+Создайте первую цель, чтобы начать копить|Create your first goal to start saving
+Пока нет целей. Нажмите «Новая цель» и задайте сумму.|No goals yet. Tap “New goal” and set an amount.
+Удалённая цель|Deleted goal
+Удалить цель|Delete goal
+Удалить привычку|Delete habit
+Удалить трату|Delete expense
+Удалить|Delete
+% выполнено|% completed
+Цель достигнута 🎉|Goal reached 🎉
+Цель достигнута|Goal reached
+Осталось |Left: 
+Пополнить|Deposit
+Снять|Withdraw
+Снято |Withdrawn 
+Пополнено на |Deposited 
+Все цели|All goals
+Диаграмма появится после первой операции.|The chart will appear after your first transaction.
+Цель обновлена|Goal updated
+Цель создана|Goal created
+Цель удалена|Goal deleted
+Цель |Goal 
+График накоплений|Savings chart
+Превью|Preview
+«|“
+» достигнута!|” reached!
+»|”
+Один день за раз — вы справляетесь.|One day at a time — you’re doing great.
+Тяга проходит за несколько минут: переключитесь на другое дело.|The craving passes in a few minutes: switch to something else.
+Каждый день без привычки — вклад в здоровье и в копилку.|Every day without the habit is an investment in your health and your savings.
+Вспомните, зачем вы начали.|Remember why you started.
+ без привычки| habit-free
+Дней без привычек|Habit-free days
+привычка|habit
+привычки|habits
+ в работе| in progress
+Добавьте привычку, от которой хотите отказаться|Add a habit you want to quit
+Добавьте привычку, и здесь появятся итоги недели.|Add a habit and your weekly summary will appear here.
+Пока пусто. Нажмите «Новая привычка», чтобы начать отсчёт.|Nothing here yet. Tap “New habit” to start counting.
+ · рекорд | · best 
+ · срывов: | · relapses: 
+сэкономлено|saved
+До следующей отметки: |Next milestone in: 
+Все отметки пройдены 🎉|All milestones reached 🎉
+Напоминание в |Reminder at 
+Без напоминаний|No reminders
+Был срыв|I relapsed
+Отметить срыв|Log a relapse
+Отметить|Log
+ и её счётчик дней будут удалены.| and its day counter will be deleted.
+Привычка удалена|Habit deleted
+Счётчик обнулён. Новый отсчёт начался|Counter reset. A new count has begun
+Счётчик |Counter 
+ обнулится. Накопленная экономия и рекорд сохранятся. Срыв — не конец: начните заново.| will reset. Your savings and best streak are kept. A relapse is not the end: start again.
+Введите название привычки|Enter a habit name
+Введите название цели|Enter a goal name
+Укажите время напоминания|Set a reminder time
+Привычка обновлена|Habit updated
+Привычка добавлена. Отсчёт начался|Habit added. The count has started
+Браузер не поддерживает системные уведомления: напоминания будут появляться вверху страницы. Они работают, пока страница открыта во вкладке.|Your browser doesn’t support system notifications: reminders will appear at the top of the page. They work while the page is open in a tab.
+Системные уведомления включены. Напоминания приходят, пока страница открыта во вкладке; если вы откроете её позже назначенного времени, напоминание придёт сразу.|System notifications are on. Reminders arrive while the page is open in a tab; if you open it after the scheduled time, the reminder arrives right away.
+Системные уведомления запрещены в настройках браузера. Напоминания будут появляться вверху страницы.|System notifications are blocked in your browser settings. Reminders will appear at the top of the page.
+Включите уведомления, чтобы напоминания приходили поверх других окон. Работают, пока страница открыта во вкладке.|Enable notifications so reminders appear over other windows. They work while the page is open in a tab.
+Проверка уведомлений|Notification test
+Так будут выглядеть напоминания.|This is how reminders will look.
+: отличный результат, так держать!|: great result, keep it up!
+Напоминание: |Reminder: 
+Внесено|Deposited
+Чистый прирост|Net gain
+ к прошлой неделе| vs last week
+прошлой недели нет в истории|no data for last week
+на прошлой неделе: |last week: 
+Операций пока нет. Пополните любую копилку.|No transactions yet. Make a deposit to any savings goal.
+Операций|Transactions
+За последние 7 дней операций не было. Пополните любую копилку, и здесь появятся итоги.|No transactions in the last 7 days. Make a deposit and your summary will appear here.
+Пополнения по дням недели|Deposits by day of week
+, снято |, withdrawn 
+Лучший день: |Best day: 
+Больше всего отложено на цель |Most saved toward goal 
+Сэкономлено за неделю|Saved this week
+Срывов|Relapses
+Самая длинная серия|Longest streak
+На этой неделе был срыв. Это бывает: важно, что вы продолжаете.|There was a relapse this week. It happens: what matters is that you keep going.
+Неделя без срывов. Отличный результат!|A week without relapses. Great result!
+Серия идёт, пока вы держитесь. Продолжайте.|The streak continues as long as you hold on. Keep going.
+ из | of 
+Прочее|Other
+Получено |Earned 
+Ближайшее: |Next up: 
+, выполнено |, completed 
+Все достижения получены. Отличная работа!|All achievements earned. Great work!
+Достижение: |Achievement: 
+Новых достижений: |New achievements: 
+Загляните на вкладку «Достижения».|Check the “Achievements” tab.
+Первая цель|First goal
+Создайте первую копилку|Create your first savings goal
+Первый взнос|First deposit
+Сделайте первое пополнение|Make your first deposit
+Регулярность|Consistency
+Сделайте 10 пополнений|Make 10 deposits
+Неделя без пропусков|A week without gaps
+Пополняйте копилки 7 дней подряд|Deposit 7 days in a row
+Первая сотня|First hundred
+Тысяча евро|One thousand euros
+Десять тысяч|Ten thousand
+Накопите |Save 
+Закройте любую цель на 100%|Complete any goal to 100%
+Мастер целей|Goal master
+Закройте три цели|Complete three goals
+Мечта в картинках|Dream in pictures
+Добавьте картинку к цели|Add an image to a goal
+Первый шаг|First step
+Неделя силы|Week of strength
+Месяц свободы|Month of freedom
+Три месяца|Three months
+7 дней без привычки|7 days habit-free
+30 дней без привычки|30 days habit-free
+90 дней без привычки|90 days habit-free
+Деньги остаются|Money stays
+Сэкономьте 50 € на отказе от привычек|Save 50 € by quitting habits
+Возвращение|Comeback
+Продержитесь 7 дней после срыва|Last 7 days after a relapse
+На всех фронтах|On all fronts
+Заведите и цель, и привычку|Create both a goal and a habit
+Учёт начат|Tracking started
+Запишите первую трату|Log your first expense
+Привычка вести учёт|Habit of tracking
+Запишите 30 трат|Log 30 expenses
+План на месяц|Plan for the month
+Задайте месячный бюджет|Set a monthly budget
+В рамках бюджета|Within budget
+Закончите месяц, не превысив бюджет|End a month without exceeding the budget
+Данные в облаке|Data in the cloud
+Надёжное хранение|Safe storage
+Сделайте экспорт данных в JSON|Export your data to JSON
+Продукты|Groceries
+Транспорт|Transport
+Жильё|Housing
+Кафе|Cafes
+Развлечения|Entertainment
+Здоровье|Health
+Одежда|Clothes
+Подписки|Subscriptions
+ к прошлому месяцу| vs last month
+В прошлом месяце трат не было|No spending last month
+Превышение на |Over by 
+ · израсходовано | · spent 
+Бюджет не задан. Установите лимит, и приложение предупредит при 80% и 100% трат.|No budget set. Set a limit and the app will warn you at 80% and 100% of spending.
+В этом месяце трат нет.|No spending this month.
+Трат нет. Нажмите «Новая трата», чтобы записать первую.|No expenses yet. Tap “New expense” to log your first.
+Трата удалена|Expense deleted
+Трата записана: |Expense logged: 
+Введите сумму больше нуля|Enter an amount above zero
+Бюджет месяца превышен|Monthly budget exceeded
+Потрачено 80% бюджета|Spent 80% of budget
+Потрачено |Spent 
+Бюджет убран|Budget removed
+Введите лимит больше нуля|Enter a limit above zero
+Бюджет сохранён|Budget saved
+Ошибка загрузки Firebase: |Firebase load error: 
+Синхронизация…|Syncing…
+Нет связи с облаком. Данные сохранены на устройстве и отправятся позже.|No connection to the cloud. Data is saved on this device and will be sent later.
+Синхронизировано в |Synced at 
+Подключено|Connected
+Неверная почта или пароль|Wrong email or password
+Аккаунт с такой почтой не найден|No account found with this email
+Эта почта уже зарегистрирована. Нажмите «Войти»|This email is already registered. Tap “Sign in”
+Пароль должен быть не короче 6 символов|Password must be at least 6 characters
+Проверьте адрес почты|Check the email address
+Слишком много попыток. Подождите и повторите|Too many attempts. Wait and try again
+Нет связи с сервером|Can’t reach the server
+Браузер заблокировал окно входа. Разрешите всплывающие окна|The browser blocked the sign-in window. Allow pop-ups
+Этот домен не добавлен в Firebase → Authentication → Authorized domains|This domain isn’t added in Firebase → Authentication → Authorized domains
+Этот способ входа не включён в консоли Firebase|This sign-in method isn’t enabled in the Firebase console
+Введите пароль|Enter your password
+Введите почту, и мы отправим письмо для сброса пароля|Enter your email and we’ll send a password reset message
+Введите почту|Enter your email
+Ошибка: |Error: 
+Письмо для сброса пароля отправлено|Password reset email sent
+Данные сохранены в облаке|Data saved to the cloud
+Не удалось связаться с облаком|Couldn’t reach the cloud
+Не удалось синхронизировать с облаком|Couldn’t sync with the cloud
+Синхронизация включена|Sync is on
+Данные обновлены из облака|Data updated from the cloud
+В облаке уже есть данные (обновлены |The cloud already has data (updated 
+). Заменить ими данные на этом устройстве или оставить локальные и загрузить их в облако?|). Replace this device’s data with it, or keep local data and upload it to the cloud?
+Взять из облака|Use cloud data
+Оставить локальные|Keep local
+Данные останутся в облаке, а с этого устройства будут удалены.|Your data stays in the cloud but will be removed from this device.
+Вы вышли из аккаунта|You signed out
+Не удалось сохранить данные: место закончилось|Couldn’t save data: storage is full
+Картинки не поместились в память браузера, остальное сохранено в cookies|Images didn’t fit in browser storage; the rest was saved in cookies
+Целевая сумма должна быть больше нуля|Target amount must be greater than zero
+Ссылка должна начинаться с http:// или https://|The link must start with http:// or https://
+Не удалось прочитать файл|Couldn’t read the file
+Этот формат не поддерживается браузером. Попробуйте JPG или PNG|This format isn’t supported by the browser. Try JPG or PNG
+Нельзя снять больше, чем накоплено|You can’t withdraw more than you’ve saved
+Нельзя отменить: сумма станет отрицательной|Can’t undo: the balance would become negative
+Отменить|Undo
+Операция отменена|Transaction undone
+, накопленные |, saved 
+ и её история будут удалены.| and its history will be deleted.
+Данные экспортированы|Data exported
+Импорт данных|Import data
+Текущие данные будут заменены данными из файла.|Current data will be replaced with the data from the file.
+Заменить|Replace
+Файл не подходит: ожидается JSON, экспортированный из копилки|Wrong file: expected a JSON exported from this app
+Данные импортированы|Data imported`;
+  const D=new Map(DICT.split('\n').map(l=>{const i=l.indexOf('|');return[l.slice(0,i),l.slice(i+1)]}));
+  const RX=new RegExp([...D.keys()].sort((a,b)=>b.length-a.length).map(k=>k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|'),'g');
+  tr=s=>s&&/[А-Яа-яЁё«»]/.test(s)?s.replace(RX,m=>D.get(m)):s;
+  const AT=['placeholder','title','aria-label','alt'];
+  function walk(n){
+    if(n.nodeType===3){const v=tr(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v;return}
+    if(n.nodeType!==1||n.tagName==='SCRIPT'||n.tagName==='STYLE')return;
+    AT.forEach(a=>{const v=n.getAttribute(a);if(v){const t=tr(v);if(t!==v)n.setAttribute(a,t)}});
+    n.childNodes.forEach(walk);
+  }
+  document.title=tr(document.title);
+  const mt=document.querySelector('meta[name=apple-mobile-web-app-title]');if(mt)mt.content='Piggy Bank';
+  walk(document.body);
+  new MutationObserver(ms=>ms.forEach(m=>{
+    if(m.type==='childList')m.addedNodes.forEach(walk);else walk(m.target);
+  })).observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:AT});
+})();
+</script>
+<script>
 const KEY='piggybank.v2';
 const EMOJIS=['🏖️','🛟','💻','🚗','🏠','🎓','🎁','📱','✈️','🎸','💍','🐶'];
-const fmt=new Intl.NumberFormat('ru-RU',{style:'currency',currency:'EUR',minimumFractionDigits:2,maximumFractionDigits:2});
+const fmt=new Intl.NumberFormat(LOC,{style:'currency',currency:'EUR',minimumFractionDigits:2,maximumFractionDigits:2});
 const money=n=>fmt.format(n).replace(/\u00a0/g,' ');
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -387,7 +762,8 @@ function load(){
   return empty();
 }
 function save(){
-  syncSW();
+  if(!applying)state.updatedAt=Date.now();
+  syncSW();queuePush();
   let ok=true;
   try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){ok=false}
   const ck=writeCookie();
@@ -402,7 +778,7 @@ function applyTheme(){
   $('theme').innerHTML=state.theme==='dark'?'<span>☀️</span><span class="tlabel"> Светлая тема</span>':'<span>🌙</span><span class="tlabel"> Тёмная тема</span>';
   const mt=document.querySelector('meta[name=theme-color]');if(mt)mt.content=state.theme==='dark'?'#0F1512':'#F5FBF6';
 }
-function fmtDate(ts){return new Date(ts).toLocaleString('ru-RU',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}
+function fmtDate(ts){return new Date(ts).toLocaleString(LOC,{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'})}
 
 function render(){
   const total=state.goals.reduce((s,g)=>s+g.saved,0);
@@ -429,7 +805,7 @@ function render(){
   if(!box.dataset.ready){box.dataset.ready=1;requestAnimationFrame(()=>requestAnimationFrame(()=>box.querySelectorAll('.fill').forEach(f=>f.style.width=f.dataset.w+'%')))}
   renderExp();renderWeek();renderChart();renderHist();renderHabits();
 }
-const fmt0=new Intl.NumberFormat('ru-RU',{maximumFractionDigits:0});
+const fmt0=new Intl.NumberFormat(LOC,{maximumFractionDigits:0});
 function renderChart(){
   const sel=$('csel'),prev=sel.value||'all';
   sel.innerHTML='<option value="all">Все цели</option>'+state.goals.map(g=>`<option value="${g.id}">${esc(g.icon+' '+g.name)}</option>`).join('');
@@ -448,7 +824,7 @@ function renderChart(){
   const X=t=>L+(t-t0)/(t1-t0)*(W-L-R),Y=v=>T+(1-(v-vmin)/(vmax-vmin))*(H-T-B);
   let g='';
   for(let v=vmin;v<=vmax+1e-9;v+=step)g+=`<line x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${L-8}" y="${Y(v)+4}" text-anchor="end">${fmt0.format(v)} €</text>`;
-  for(let i=0;i<=3;i++){const t=t0+(t1-t0)*i/3;g+=`<text x="${X(t)}" y="${H-8}" text-anchor="${i==0?'start':i==3?'end':'middle'}">${new Date(t).toLocaleDateString('ru-RU',{day:'numeric',month:'short'})}</text>`}
+  for(let i=0;i<=3;i++){const t=t0+(t1-t0)*i/3;g+=`<text x="${X(t)}" y="${H-8}" text-anchor="${i==0?'start':i==3?'end':'middle'}">${new Date(t).toLocaleDateString(LOC,{day:'numeric',month:'short'})}</text>`}
   if(goal)g+=`<line x1="${L}" x2="${W-R}" y1="${Y(goal.target)}" y2="${Y(goal.target)}" stroke="var(--acc)" stroke-dasharray="5 5" opacity=".7"/><text x="${W-R}" y="${Y(goal.target)-5}" text-anchor="end" style="fill:var(--acc2)">Цель ${fmt0.format(goal.target)} €</text>`;
   /* ступенчатая линия: баланс держится до следующей операции */
   let d=`M${X(pts[0].ts)},${Y(pts[0].v)}`;
@@ -485,7 +861,7 @@ const PHRASES=['Один день за раз — вы справляетесь.
 let hEdit=null,hEmoji=HEMO[0];
 const dayKey=d=>{d=d||new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
 const hDays=h=>Math.max(0,Math.floor((Date.now()-h.start)/864e5));
-const dayWord=n=>{const m=n%10,h=n%100;return h>10&&h<20?'дней':m===1?'день':m>1&&m<5?'дня':'дней'};
+const dayWord=n=>{if(LANG==='en')return n===1?'day':'days';const m=n%10,h=n%100;return h>10&&h<20?'дней':m===1?'день':m>1&&m<5?'дня':'дней'};
 const hSaved=h=>Math.round(((h.savedBefore||0)+hDays(h)*(h.cost||0))*100)/100;
 
 function moveInd(instant){
@@ -526,7 +902,7 @@ function addAlert(title,body){
   $('alerts').prepend(d);
   while($('alerts').children.length>4)$('alerts').lastChild.remove();
 }
-async function sysNotify(title,body){
+async function sysNotify(title,body){title=tr(title);body=tr(body);
   if(!('Notification' in window)||Notification.permission!=='granted')return;
   try{
     const reg='serviceWorker' in navigator?await navigator.serviceWorker.getRegistration():null;
@@ -580,7 +956,7 @@ function renderHabits(){
         <button class="ib" data-h="edit" title="Редактировать" aria-label="Редактировать">✏️</button>
         <button class="ib" data-h="del" title="Удалить" aria-label="Удалить">🗑️</button></div>
       <div class="streak">${d} <span>${dayWord(d)} без привычки</span></div>
-      <div class="meta">с ${new Date(h.start).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})}${h.best>d?` · рекорд ${h.best} ${dayWord(h.best)}`:''}${h.relapses?` · срывов: ${h.relapses}`:''}</div>
+      <div class="meta">${LANG==='en'?'since':'с'} ${new Date(h.start).toLocaleDateString(LOC,{day:'numeric',month:'long',year:'numeric'})}${h.best>d?` · рекорд ${h.best} ${dayWord(h.best)}`:''}${h.relapses?` · срывов: ${h.relapses}`:''}</div>
       <div class="amt" style="margin-top:12px">${money(hSaved(h))} <span>сэкономлено</span></div>
       <div class="bar"><div class="fill" style="width:${p}%"></div></div>
       <div class="pct"><span>${next?'До следующей отметки: '+(next-d)+' '+dayWord(next-d):'Все отметки пройдены 🎉'}</span></div>
@@ -649,8 +1025,8 @@ function renderWeek(){
     <div class="tile"><small>Чистый прирост</small><b>${sign(net)}</b><div class="delta">${prv.length?sign(dl)+' к прошлой неделе':'прошлой недели нет в истории'}</div></div>
     <div class="tile"><small>Операций</small><b>${cur.length}</b><div class="delta">${prv.length?'на прошлой неделе: '+prv.length:''}</div></div>
   </div>
-  <div class="days" role="img" aria-label="Пополнения по дням недели">${days.map((x,i)=>`<div class="day ${i===6?'today':''}" title="${x.d.toLocaleDateString('ru-RU',{day:'numeric',month:'long'})}: +${money(x.dep)}${x.wd?', снято '+money(x.wd):''}"><i class="${x.dep?'':'zero'}" style="height:${x.dep?Math.max(6,x.dep/mx*72):3}px"></i><span>${x.d.toLocaleDateString('ru-RU',{weekday:'short'})}</span></div>`).join('')}</div>
-  <div class="wnote">${best.dep?`Лучший день: <b>${best.d.toLocaleDateString('ru-RU',{weekday:'long'})}</b>, ${money(best.dep)}. `:''}${top?`Больше всего отложено на цель <b>${esc(top.icon+' '+top.name)}</b>: ${money(byG[topId])}.`:''}</div>`;
+  <div class="days" role="img" aria-label="Пополнения по дням недели">${days.map((x,i)=>`<div class="day ${i===6?'today':''}" title="${x.d.toLocaleDateString(LOC,{day:'numeric',month:'long'})}: +${money(x.dep)}${x.wd?', снято '+money(x.wd):''}"><i class="${x.dep?'':'zero'}" style="height:${x.dep?Math.max(6,x.dep/mx*72):3}px"></i><span>${x.d.toLocaleDateString(LOC,{weekday:'short'})}</span></div>`).join('')}</div>
+  <div class="wnote">${best.dep?`Лучший день: <b>${best.d.toLocaleDateString(LOC,{weekday:'long'})}</b>, ${money(best.dep)}. `:''}${top?`Больше всего отложено на цель <b>${esc(top.icon+' '+top.name)}</b>: ${money(byG[topId])}.`:''}</div>`;
 }
 function renderHabitWeek(){
   const box=$('hweek'),hs=state.habits,now=Date.now();
@@ -699,6 +1075,7 @@ const ACH=[
  {id:'exp30',g:3,i:'📒',t:'Привычка вести учёт',d:'Запишите 30 трат',p:()=>[state.exp.length,30]},
  {id:'bud',g:3,i:'🎯',t:'План на месяц',d:'Задайте месячный бюджет',p:()=>[state.budget>0?1:0,1]},
  {id:'under',g:3,i:'✅',t:'В рамках бюджета',d:'Закончите месяц, не превысив бюджет',p:()=>{const t=monthTotal(-1);return[state.budget>0&&t>0&&t<=state.budget?1:0,1]}},
+ {id:'cloud',g:2,i:'☁️',t:'Данные в облаке',d:'Войдите в аккаунт и включите синхронизацию',p:()=>[state.flags.cloud?1:0,1]},
  {id:'backup',g:2,i:'💾',t:'Надёжное хранение',d:'Сделайте экспорт данных в JSON',p:()=>[state.flags.exported?1:0,1]}
 ];
 let freshAch=new Set();
@@ -718,7 +1095,7 @@ function renderAch(){
   $('asub').textContent=left?`Ближайшее: «${left.a.t}», выполнено ${Math.floor(left.r*100)}%`:'Все достижения получены. Отличная работа!';
   $('achbox').innerHTML=ACH_GROUPS.map((gn,gi)=>`<h2>${gn}</h2><div class="grid">`+ACH.filter(a=>a.g===gi).map(a=>{
     const ts=state.ach[a.id],[c0,t]=a.p(),c=Math.min(c0,t),f=v=>a.u==='eur'?money(v):Math.floor(v);
-    return ts?`<article class="card ach got ${freshAch.has(a.id)?'fresh':''}"><div class="ico">${a.i}</div><div class="info"><b>${a.t}</b><p>${a.d}<br>Получено ${new Date(ts).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})}</p></div></article>`
+    return ts?`<article class="card ach got ${freshAch.has(a.id)?'fresh':''}"><div class="ico">${a.i}</div><div class="info"><b>${a.t}</b><p>${a.d}<br>Получено ${new Date(ts).toLocaleDateString(LOC,{day:'numeric',month:'long',year:'numeric'})}</p></div></article>`
     :`<article class="card ach lock"><div class="ico">${a.i}</div><div class="info"><b>${a.t}</b><p>${a.d}</p><div class="bar"><div class="fill" style="width:${c/t*100}%"></div></div><div class="pct"><span>${f(c)} / ${f(t)}</span><span>${Math.floor(c/t*100)}%</span></div></div></article>`}).join('')+'</div>').join('');
   freshAch.clear();
 }
@@ -731,7 +1108,7 @@ const inMonth=(ts,d)=>{const t=new Date(ts);return t.getFullYear()===d.getFullYe
 const monthTotal=off=>{const d=mDate(off);return state.exp.filter(e=>inMonth(e.ts,d)).reduce((s,e)=>s+e.amount,0)};
 function renderExp(){
   const d=mDate(xOff),list=state.exp.filter(e=>inMonth(e.ts,d)).sort((a,b)=>b.ts-a.ts);
-  const total=list.reduce((s,e)=>s+e.amount,0),prev=monthTotal(xOff-1),lab=d.toLocaleDateString('ru-RU',{month:'long',year:'numeric'});
+  const total=list.reduce((s,e)=>s+e.amount,0),prev=monthTotal(xOff-1),lab=d.toLocaleDateString(LOC,{month:'long',year:'numeric'});
   $('xlabel').textContent=lab.charAt(0).toUpperCase()+lab.slice(1);
   $('xnext').disabled=xOff>=0;
   $('xsum').textContent=money(total);
@@ -749,7 +1126,7 @@ function renderExp(){
   const n=new Date(d.getFullYear(),d.getMonth()+1,0).getDate(),per=Array(n).fill(0);
   list.forEach(e=>per[new Date(e.ts).getDate()-1]+=e.amount);
   const mx=Math.max(...per,1);
-  $('xdays').innerHTML=per.map((v,i)=>`<div class="day" title="${i+1} ${d.toLocaleDateString('ru-RU',{month:'long'})}: ${money(v)}"><i class="${v?'':'zero'}" style="height:${v?Math.max(5,v/mx*72):3}px"></i><span>${(i+1)%5===0||i===0?i+1:''}</span></div>`).join('');
+  $('xdays').innerHTML=per.map((v,i)=>`<div class="day" title="${i+1} ${d.toLocaleDateString(LOC,{month:'long'})}: ${money(v)}"><i class="${v?'':'zero'}" style="height:${v?Math.max(5,v/mx*72):3}px"></i><span>${(i+1)%5===0||i===0?i+1:''}</span></div>`).join('');
   /* список */
   $('xlist').innerHTML=list.length?list.map(e=>{const c=CATS[e.cat]||CATS[8];
     return `<div class="row"><span class="d">${fmtDate(e.ts)}</span><div><b>${c.i} ${c.n}</b>${e.note?`<div class="c">${esc(e.note)}</div>`:''}</div><span class="neg">−${money(e.amount)}</span><button class="ib" data-xdel="${e.id}" aria-label="Удалить трату" title="Удалить">🗑️</button></div>`}).join(''):'<div class="empty">Трат нет. Нажмите «Новая трата», чтобы записать первую.</div>';
@@ -787,8 +1164,94 @@ $('bsave').onclick=()=>{
   if(!(v>0))return toast('Введите лимит больше нуля');
   state.budget=Math.round(v*100)/100;save();$('bdlg').close();renderExp();refreshAch();checkBudget();toast('Бюджет сохранён');
 };
+/* ===== Аккаунт и облако (Firebase) ===== */
+let user=null,unsub=null,pushT=null,applying=false,syncSt='',lastOk=null;
+const fbOk=()=>!!(window.FB&&!window.FB.error&&window.FIREBASE_CONFIG&&window.FIREBASE_CONFIG.apiKey);
+const AERR={'auth/invalid-credential':'Неверная почта или пароль','auth/wrong-password':'Неверная почта или пароль','auth/user-not-found':'Аккаунт с такой почтой не найден','auth/email-already-in-use':'Эта почта уже зарегистрирована. Нажмите «Войти»','auth/weak-password':'Пароль должен быть не короче 6 символов','auth/invalid-email':'Проверьте адрес почты','auth/too-many-requests':'Слишком много попыток. Подождите и повторите','auth/network-request-failed':'Нет связи с сервером','auth/popup-blocked':'Браузер заблокировал окно входа. Разрешите всплывающие окна','auth/unauthorized-domain':'Этот домен не добавлен в Firebase → Authentication → Authorized domains','auth/operation-not-allowed':'Этот способ входа не включён в консоли Firebase','auth/missing-password':'Введите пароль','auth/missing-email':'Введите почту'};
+function aerr(e){const c=e&&e.code||'';if(c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request'){$('aerr').textContent='';return}$('aerr').textContent=AERR[c]||('Ошибка: '+(c||e))}
+function normalize(st){st.goals=st.goals||[];st.tx=st.tx||[];st.habits=st.habits||[];st.ach=st.ach||{};st.flags=st.flags||{};st.exp=st.exp||[];st.budget=+st.budget||0;st.tab=st.tab||'goals';return st}
+function cloudPayload(){
+  let j=JSON.stringify(state);
+  if(j.length>900000){const c=JSON.parse(j);c.goals.forEach(g=>delete g.img);j=JSON.stringify(c)}
+  return j;
+}
+function setStatus(k){syncSt=k;if(k==='ok')lastOk=new Date();renderAccount()}
+function queuePush(){if(!user||applying)return;clearTimeout(pushT);pushT=setTimeout(push,1500);setStatus('busy')}
+async function push(){
+  if(!user)return;pushT=null;
+  try{await FB.set(user.uid,{data:cloudPayload(),updatedAt:state.updatedAt||Date.now()});setStatus('ok')}catch(e){setStatus('err')}
+}
+function applyRemote(cs,ts){
+  applying=true;
+  const th=state.theme,tab=state.tab;state=normalize(cs);state.theme=state.theme||th;state.tab=tab;state.updatedAt=ts;
+  save();applying=false;applyTheme();render();
+}
+function onSnap(snap){
+  if(!snap.exists()||snap.metadata.hasPendingWrites)return;
+  const c=snap.data();if(!c||!c.data||c.updatedAt<=(state.updatedAt||0))return;
+  try{applyRemote(JSON.parse(c.data),c.updatedAt);toast('Данные обновлены из облака')}catch(e){}
+}
+async function onUser(u){
+  user=u;if(unsub){unsub();unsub=null}
+  renderAccount();if(!u)return;
+  try{
+    const snap=await FB.get(u.uid),cloud=snap.exists()?snap.data():null;
+    const localHas=state.goals.length||state.habits.length||state.exp.length||state.tx.length;
+    if(!cloud||!cloud.data){if(localHas)await push()}
+    else if(!localHas)applyRemote(JSON.parse(cloud.data),cloud.updatedAt);
+    else if(cloud.updatedAt!==state.updatedAt){
+      const when=new Date(cloud.updatedAt).toLocaleString(LOC,{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
+      const useCloud=await ask('Данные в облаке',`В облаке уже есть данные (обновлены ${when}). Заменить ими данные на этом устройстве или оставить локальные и загрузить их в облако?`,'Взять из облака','Оставить локальные');
+      if(useCloud)applyRemote(JSON.parse(cloud.data),cloud.updatedAt);else await push();
+    }
+    setStatus('ok');
+    unsub=FB.listen(u.uid,onSnap);
+    if(!state.flags.cloud){state.flags.cloud=true;save();refreshAch()}
+    toast('Синхронизация включена');
+  }catch(e){setStatus('err');toast('Не удалось синхронизировать с облаком')}
+}
+function renderAccount(){
+  const ok=fbOk();
+  $('a-cfg').hidden=ok;$('a-out').hidden=!ok||!!user;$('a-in').hidden=!ok||!user;
+  if(!ok&&window.FB&&window.FB.error)$('acfgerr').textContent='Ошибка загрузки Firebase: '+window.FB.error;
+  const name=user?(user.displayName||user.email||'Аккаунт'):'';
+  $('acc').innerHTML=user?`<span>☁️</span><span class="tlabel"> ${esc(name.split('@')[0].slice(0,14))}</span>`:'<span>👤</span><span class="tlabel"> Войти</span>';
+  if(user){
+    $('aname').textContent=user.email||name;
+    $('astat').textContent=syncSt==='busy'?'Синхронизация…':syncSt==='err'?'Нет связи с облаком. Данные сохранены на устройстве и отправятся позже.':lastOk?'Синхронизировано в '+lastOk.toLocaleTimeString(LOC,{hour:'2-digit',minute:'2-digit'}):'Подключено';
+  }
+}
+function initAccount(){
+  renderAccount();
+  if(fbOk())FB.onAuth(onUser);
+}
+if(window.FB)initAccount();else addEventListener('fb-ready',initAccount,{once:true});
+$('acc').onclick=()=>{$('aerr').textContent='';renderAccount();$('adlg').showModal()};
+$('aclose').onclick=()=>$('adlg').close();
+const doAuth=fn=>async()=>{
+  $('aerr').textContent='';
+  try{await fn();$('adlg').close();$('apw').value=''}catch(e){aerr(e)}
+};
+$('alogin').onclick=doAuth(()=>FB.signIn($('aem').value.trim(),$('apw').value));
+$('areg').onclick=doAuth(()=>FB.signUp($('aem').value.trim(),$('apw').value));
+$('agoogle').onclick=doAuth(()=>FB.google());
+$('apw').addEventListener('keydown',e=>{if(e.key==='Enter')$('alogin').click()});
+$('areset').onclick=async()=>{
+  const m=$('aem').value.trim();if(!m){$('aerr').textContent='Введите почту, и мы отправим письмо для сброса пароля';return}
+  try{await FB.reset(m);$('aerr').textContent='';toast('Письмо для сброса пароля отправлено')}catch(e){aerr(e)}
+};
+$('async').onclick=async()=>{clearTimeout(pushT);await push();toast(syncSt==='ok'?'Данные сохранены в облаке':'Не удалось связаться с облаком')};
+$('aout').onclick=()=>ask('Выйти из аккаунта','Данные останутся в облаке, а с этого устройства будут удалены.','Выйти').then(async ok=>{
+  if(!ok)return;
+  if(pushT){clearTimeout(pushT);await push()}
+  if(unsub){unsub();unsub=null}
+  const th=state.theme;applying=true;state=empty();state.theme=th;save();applying=false;
+  applyTheme();render();
+  try{await FB.out()}catch(e){}
+  $('adlg').close();toast('Вы вышли из аккаунта');
+});
 function linkLabel(u){try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return u}}
-function plural(n){const m=n%10,h=n%100;return h>10&&h<20?'целей':m===1?'цель':m>1&&m<5?'цели':'целей'}
+function plural(n){if(LANG==='en')return n===1?'goal':'goals';const m=n%10,h=n%100;return h>10&&h<20?'целей':m===1?'цель':m>1&&m<5?'цели':'целей'}
 function renderHist(){
   const list=[...state.tx].sort((a,b)=>b.ts-a.ts),shown=showAll?list:list.slice(0,8);
   $('clearH').style.display=list.length>8?'':'none';
@@ -801,9 +1264,9 @@ function renderHist(){
       <button class="btn" data-undo="${t.id}" ${g?'':'disabled'}>Отменить</button></div>`}).join(''):'<div class="empty">Операций пока нет. Пополните любую копилку.</div>';
 }
 
-function ask(title,text,okText){
+function ask(title,text,okText,noText){
   return new Promise(res=>{
-    $('ctitle').textContent=title;$('ctext').textContent=text;$('cyes').textContent=okText||'Подтвердить';
+    $('ctitle').textContent=title;$('ctext').textContent=text;$('cyes').textContent=okText||'Подтвердить';$('cno').textContent=noText||'Отмена';
     const d=$('cdlg');let r=false;
     const done=v=>{r=v;d.close()};
     $('cyes').onclick=()=>done(true);$('cno').onclick=()=>done(false);
@@ -941,6 +1404,40 @@ function confetti(){
 }
 
 applyTheme();render();
+</script>
+<script type="module">
+const cfg=window.FIREBASE_CONFIG;
+if(cfg&&cfg.apiKey){
+  try{
+    /* пробуем версии SDK по очереди: первая, которая загрузилась целиком, и будет использована */
+    let initializeApp,A,F,lastErr;
+    for(const V of ['13.4.0','12.2.1','10.14.1']){
+      const B='https://www.gstatic.com/firebasejs/'+V+'/';
+      try{
+        ({initializeApp}=await import(B+'firebase-app.js'));
+        A=await import(B+'firebase-auth.js');
+        F=await import(B+'firebase-firestore.js');
+        lastErr=null;break;
+      }catch(e){lastErr=V+': '+e}
+    }
+    if(lastErr)throw new Error(lastErr);
+    const app=initializeApp(cfg),auth=A.getAuth(app),db=F.getFirestore(app);
+    auth.languageCode=LANG;
+    const ref=uid=>F.doc(db,'users',uid);
+    window.FB={
+      onAuth:cb=>A.onAuthStateChanged(auth,cb),
+      signIn:(e,p)=>A.signInWithEmailAndPassword(auth,e,p),
+      signUp:(e,p)=>A.createUserWithEmailAndPassword(auth,e,p),
+      google:()=>A.signInWithPopup(auth,new A.GoogleAuthProvider()),
+      reset:e=>A.sendPasswordResetEmail(auth,e),
+      out:()=>A.signOut(auth),
+      get:uid=>F.getDoc(ref(uid)),
+      set:(uid,d)=>F.setDoc(ref(uid),d),
+      listen:(uid,cb)=>F.onSnapshot(ref(uid),cb)
+    };
+  }catch(e){window.FB={error:String(e)}}
+}
+window.dispatchEvent(new Event('fb-ready'));
 </script>
 </body>
 </html>
